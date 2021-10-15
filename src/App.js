@@ -8,6 +8,10 @@ function App() {
   const [searchString, setSearchString] = useState('');
 
   useEffect(() => {
+    setSongs(updateSongsHandler(albuns));
+  }, [albuns]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setSongs([]);
       setSongs(updateSongsHandler(albuns));
@@ -34,7 +38,13 @@ function App() {
               .map((item) => {
                 return item.collectionName;
               });
-            setAlbuns([albuns[0], albuns[1], albuns[2], albuns[3], albuns[4]]);
+            setAlbuns([
+              albuns[0] || 'A',
+              albuns[1] || 'B',
+              albuns[2] || 'C',
+              albuns[3] || 'D',
+              albuns[4] || 'E',
+            ]);
           });
         })
         .catch((err) => {
