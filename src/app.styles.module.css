@@ -1,0 +1,31 @@
+.root {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+.container {
+  background-color: #dddddd;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 3px 2px #464646;
+  padding: 10px 12px;
+}
+.itemContainer {
+  padding: 6px;
+  background-color: white;
+  color: #585858;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  box-shadow: inset 0px 0px 3px 2px #464646;
+}
+.inputClass {
+  padding: 6px 8px;
+  background-color: white;
+  color: #585858;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: inset 0px 0px 2px 1px #797979;
+}
