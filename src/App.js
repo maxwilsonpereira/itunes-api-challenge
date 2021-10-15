@@ -28,29 +28,28 @@ function App() {
   };
 
   useEffect(() => {
-    if (searchString.length > 2) {
-      fetch(`https://itunes.apple.com/search?term=${searchString}`)
-        .then((res) => {
-          res.json().then(({ results }) => {
-            console.log('results: ', results);
-            const albuns = results
-              .sort((a, b) => (a.collectionName < b.collectionName ? -1 : 1))
-              .map((item) => {
-                return item.collectionName;
-              });
-            setAlbuns([
-              albuns[0] || 'A',
-              albuns[1] || 'B',
-              albuns[2] || 'C',
-              albuns[3] || 'D',
-              albuns[4] || 'E',
-            ]);
-          });
-        })
-        .catch((err) => {
-          console.log('ERROR: ', err);
+    fetch(`https://itunes.apple.com/search?term=${searchString}`, {
+      mode: 'no-cors',
+    })
+      .then((res) => {
+        res.json().then(({ results }) => {
+          const albuns = results
+            .sort((a, b) => (a.collectionName < b.collectionName ? -1 : 1))
+            .map((item) => {
+              return item.collectionName;
+            });
+          setAlbuns([
+            albuns[0] || 'A',
+            albuns[1] || 'B',
+            albuns[2] || 'C',
+            albuns[3] || 'D',
+            albuns[4] || 'E',
+          ]);
         });
-    }
+      })
+      .catch((err) => {
+        console.log('ERROR: ', err);
+      });
   }, [searchString]);
 
   return (
