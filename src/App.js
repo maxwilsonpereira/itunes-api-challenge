@@ -1,4 +1,7 @@
+// https://itunes-api-challenge.web.app/
+
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
 import classes from './app.styles.module.css';
 
@@ -28,24 +31,26 @@ function App() {
   };
 
   useEffect(() => {
-    fetch(`https://itunes.apple.com/search?term=${searchString}`, {
-      mode: 'no-cors',
-    })
-      .then((res) => {
-        res.json().then(({ results }) => {
-          const albuns = results
-            .sort((a, b) => (a.collectionName < b.collectionName ? -1 : 1))
-            .map((item) => {
-              return item.collectionName;
-            });
-          setAlbuns([
-            albuns[0] || 'A',
-            albuns[1] || 'B',
-            albuns[2] || 'C',
-            albuns[3] || 'D',
-            albuns[4] || 'E',
-          ]);
-        });
+    axios
+      .get(`https://itunes.apple.com/search?term=${searchString}`, {
+        mode: 'no-cors',
+      })
+      .then(({ data }) => {
+        console.log('**************');
+
+        console.log(data.results);
+        const albuns = data.results
+          .sort((a, b) => (a.collectionName < b.collectionName ? -1 : 1))
+          .map((item) => {
+            return item.collectionName;
+          });
+        setAlbuns([
+          albuns[0] || 'A',
+          albuns[1] || 'B',
+          albuns[2] || 'C',
+          albuns[3] || 'D',
+          albuns[4] || 'E',
+        ]);
       })
       .catch((err) => {
         console.log('ERROR: ', err);
